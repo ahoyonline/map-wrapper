@@ -54,7 +54,7 @@ mapData is the object containing the data to be displayed on the map.
 The mapData is defined by its schema [mapData.schema.json](mapData.schema.json)
 
 #### options ####
-To iverride the options of the map, you can pass an object corresponding 
+To override the options of the map, you can pass an object corresponding 
 to the schema [options.schema.json](options.schema.json)
 The object passed will extend the default options, therefore, you will need
 to specify only the values that you want to differ from the defaults
@@ -67,6 +67,12 @@ The arguments passed to the function are
 * The type of feature that has changed ('polylines' or 'markers')
 * the index of the feature changed
 
+#### userId ####
+This data is used by the map wrapper to check if the currently logged in user is
+editing a feature, or is being edited by someone else.
+Typically this will be the Meteor userId if the accounts package is added,
+however, for enabling anonymous editing, null is a permitted value.
+
 ## Example ##
 
 To use the map wrapper, simply include the template MapWrapper in you templates
@@ -75,7 +81,7 @@ and pass to it mapData and optionally options
 ```html
 <template name="map_wrapper_container">
   <div class="map_wrapper_container">
-    {{ >mapWrapper mapData=mapData options=options listener=listener }}
+    {{ >mapWrapper mapData=mapData options=options listener=listener userId=userId}}
   </div>
 </template>
 ```
@@ -101,7 +107,8 @@ Template.map_wrapper_container.helpers({
     return function(newMapData, type, index) {
       mapDataReactive.set(newMapData);
     };
-  }
+  },
+  userId: Meteor.userId
 });
 ```
 
