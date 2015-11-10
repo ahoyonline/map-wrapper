@@ -11,6 +11,12 @@ MapWrapper = {
     loadOnRegistration: true
   },
   /**
+   * The user using this map. This is used by the field "editedBy" on the
+   * mapData. If edited by is null, it means that the field is in edit mode
+   * but the user is anonymous, otherwise ia a meteor userId
+   */
+  userId: null,
+  /**
    * The listener that gets notified if the data changes
    */
   listener: null,
@@ -64,9 +70,8 @@ Template.mapWrapper.onCreated(function() {
     if (this.data.options) {
       $.extend(MapWrapper.options, this.data.options);
     }
-    if (this.data.listener) {
-      MapWrapper.listener = this.data.listener;
-    }
+    MapWrapper.listener = this.data.listener ? this.data.listener : null;
+    MapWrapper.userId = this.data.userId ? this.data.userId : null;
   }
 });
 
@@ -80,6 +85,7 @@ Template.mapWrapper.onRendered(function() {
   this.autorun(function() {
     MapWrapper.mapData = Template.currentData().mapData;
     MapWrapper.drawFeatures(MapWrapper.mapData);
+    MapWrapper.userId = Template.currentData().userId;
   });
 });
 

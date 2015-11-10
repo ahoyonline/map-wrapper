@@ -25,7 +25,7 @@
           }
         },
         "editedBy": {
-          "description": "The user ID (or -1 if unknown) of the user modifying this item. If is not in edit mode, this field should not be present",
+          "description": "The user ID (null is anonymous) of the user modifying this item. If is not in edit mode, this field is undefined",
           "type": "number"
         }
       }
@@ -38,7 +38,7 @@
           "$ref": "#/definitions/point"
         },
         "editedBy": {
-          "description": "The user ID (or -1 if unknown) of the user modifying this item. If is not in edit mode, this field should not be present",
+          "description": "The user ID (null if anonymous) of the user modifying this item. If is not in edit mode, this field is undefined",
           "type": "number"
         }
       }
