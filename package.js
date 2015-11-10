@@ -1,6 +1,6 @@
 Package.describe({
   name: 'ahoy:map-wrapper',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'A library to wrap map components',
   git: 'https://github.com/ahoyonline/map-wrapper.git',
   documentation: 'README.md'

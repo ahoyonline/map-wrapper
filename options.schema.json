@@ -8,7 +8,7 @@
       "type": "number"
     },
     "mapCentre": {
-      "description": "Where to centre the map on load"
+      "description": "Where to centre the map on load",
       "type": "array",
       "items": [{
         "description": "The latitude of the map centre",
